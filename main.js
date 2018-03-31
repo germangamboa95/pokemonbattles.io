@@ -40,9 +40,15 @@ $( document ).ready(function() {
        $('[data="user"] .card-text .health').text(userSelection.health);
        $('[data="enemy"] .card-text .attack').text(currentEnemy.base_power);
        $('[data="user"] .card-text .attack').text(userSelection.curent_power);
-        console.log(userSelection);
-        console.log(currentEnemy);
 
+       if(userSelection.health < 0) {
+           console.log('you lose!');
+       }
+       if(currentEnemy.health < 0) {
+           console.log('you win');
+       }
+
+``
 
     });
 
