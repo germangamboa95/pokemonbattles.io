@@ -4,8 +4,10 @@ The game will be working on the Pokemon API which is an open API that helps begi
 
 
 ## Dev log
-###Day One: 
-    Pretty good day. All the basic functionality is complete. This is my first time using jQuery. It makes things easier to an extend. I spent 30min looking for a bug in one of my query selectors only to discover the element was created incorrectly.
+
+###Day One
+ 
+Pretty good day. All the basic functionality is complete. This is my first time using jQuery. It makes things easier to an extent. I spent 30min looking for a bug in one of my query selectors only to discover the element was created incorrectly.
     ` class=health` instead of `class="health"`
     I keep latching on to class selectors and I keep using them to track state. I need to fix that. 
 
