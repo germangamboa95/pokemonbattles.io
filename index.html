@@ -8,7 +8,13 @@
     <title>Pokemon Battles!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+
         <style>
+            body{
+                background-image: url('http://sf.co.ua/13/04/wallpaper-382851.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
             .waiting-room .card-body {
                 display: none;
             }
@@ -18,21 +24,22 @@
             .dead {
               display: none;
             }
+      
 
         </style>
 
 </head>
 
 <body>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" >
         <h1>Welcome to pokemon battles!</h1>
         <p>Pick your fighter and pick your first opponent!</p>
     </div>
-    <div class="container ">
+    <div class="container mt-5">
         <div class="row waiting-room"></div>
-        <div class="row main-selection"></div>
-        <div class="row battle-spot"></div>
-        <div class="row opponent-selection">
+        <div class="row main-selection h-25 justify-content-center"></div>
+        <div class="row battle-spot justify-content-center"></div>
+        <div class="row opponent-selection justify-content-center">
         </div>
 
         <div class="dead"></div>

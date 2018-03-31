@@ -9,7 +9,7 @@ $(document).ready(function() {
     userSelection.health = this.attributes.value.value;
 
 
-    $('.title').hide();
+    $('.title, .jumbotron').hide();
     $('.battle-spot').append(userSelection.card);
     let opponents = $('.main-selection .card');
     $('.opponent-selection').append(opponents);
@@ -104,8 +104,8 @@ function attack() {
   let html =
   `
     <ul class="list-group">
-      <li class="list-group-item">You took ${userSelection.curent_power} points from enemy!</li>
-      <li class="list-group-item">The enemy tool ${currentEnemy.base_power}</li>
+      <li class="list-group-item">You took ${userSelection.curent_power} points from the enemy!</li>
+      <li class="list-group-item">The enemy took ${currentEnemy.base_power}</li>
     </ul>
   `;
   $('.stats').html(html);
@@ -120,12 +120,12 @@ function createCards(num) {
       .then(res => res.json())
       .then(data => {
         let image = data.sprites.front_default;
-        let html = `<div value="${data.stats[0].base_stat}" class="card col-md-3" >
+        let html = `<div value="${data.stats[0].base_stat}" class="card col-md-2" >
                 <img class="card-img-top" src="${image}" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="text-center">${data.name}</h4>
-                  <p class="card-text">Health: <span class="health">${data.stats[0].base_stat}</span></p>
-                  <p class="card-text">Attack: <span class="attack">10</span></p>
+                <div class="card-body p-0 text-center">
+                  <h4 class=" mx-0">${data.name}</h4>
+                  <p class="card-text m-0">Health: <span class="health">${data.stats[0].base_stat}</span></p>
+                  <p class="card-text m-0">Attack: <span class="attack">10</span></p>
 
                 </div>
               </div>`;
