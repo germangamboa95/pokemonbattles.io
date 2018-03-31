@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.main-selection').before('<h2 class="title">Choose your Pokemon!</h2>');
-  createCards(5);
+  createCards(4);
 
 
   $('.main-selection').on('click', '.card', function() {
@@ -19,6 +19,7 @@ $(document).ready(function() {
   });
 
   $('.opponent-selection').on('click', '.card', function() {
+
     currentEnemy.card = this;
     $(currentEnemy.card).attr("data", 'enemy');
     currentEnemy.health = this.attributes.value.value;
@@ -31,16 +32,22 @@ $(document).ready(function() {
     $('.waiting-room').append(opponents).addClass('justify-content-end');
 
     $('.battle-spot').append('<button class="btn btn-danger">ATTACK!</button>');
+      $('.battle-spot').append('<div class=" col-md-3 stats">');
   });
 
   $('.battle-spot').on('click', '.btn', function() {
+
     attack();
     addPower();
+
+
+
+
     $('[data="enemy"] .card-text .health').text(currentEnemy.health);
     $('[data="user"] .card-text .health').text(userSelection.health);
     $('[data="enemy"] .card-text .attack').text(currentEnemy.base_power);
     $('[data="user"] .card-text .attack').text(userSelection.curent_power);
-
+//Needs to be an if
     if (userSelection.health < 0) {
       $('body').html('<h1>YOU LOST <br> GAME OVER!</h1>');
     }
@@ -89,11 +96,16 @@ function addPower() {
 function attack() {
   currentEnemy.health -= userSelection.curent_power;
   userSelection.health -= currentEnemy.base_power;
+
+
+
+
+
   let html =
   `
-    <ul>
-      <li>You took ${userSelection.curent_power} points from enemy!</li>
-      <li>The enemy tool ${currentEnemy.base_power}</li>
+    <ul class="list-group">
+      <li class="list-group-item">You took ${userSelection.curent_power} points from enemy!</li>
+      <li class="list-group-item">The enemy tool ${currentEnemy.base_power}</li>
     </ul>
   `;
   $('.stats').html(html);
@@ -103,14 +115,15 @@ function attack() {
 function createCards(num) {
 
   for (let i = 0; i < num; i++) {
-    //let id = Math.floor(Math.random() * 100);
-    fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+    let id = Math.floor(Math.random() * 120) + 1;
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
         let image = data.sprites.front_default;
         let html = `<div value="${data.stats[0].base_stat}" class="card col-md-3" >
                 <img class="card-img-top" src="${image}" alt="Card image cap">
                 <div class="card-body">
+                  <h4 class="text-center">${data.name}</h4>
                   <p class="card-text">Health: <span class="health">${data.stats[0].base_stat}</span></p>
                   <p class="card-text">Attack: <span class="attack">10</span></p>
 
