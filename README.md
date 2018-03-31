@@ -12,10 +12,10 @@ Pretty good day. All the basic functionality is complete. This is my first time 
     I keep latching on to class selectors and I keep using them to track state. I need to fix that. 
 
 ## Todo log
-* [] Decouple state from class attribute.
-* [] Add fight next opponent functionality 
-* [] Add a lose state. 
-* [] Add a win fight state and a win all state. 
+- [ ] Decouple state from class attribute.
+- [ ] Add fight next opponent functionality 
+- [ ] Add a lose state. 
+- [ ] Add a win fight state and a win all state. 
 
 ## Technologies used
 * jQuery for DOM manipulation. 
