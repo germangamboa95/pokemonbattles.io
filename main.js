@@ -118,7 +118,7 @@ function attack() {
 function loader(prog) {
   let precent = (prog/4) * 100;
   let html =`
-  <div class="progress" style="width: 100%">
+  <div class="progress" style="width: 100%; border-radius: 1em;">
 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: ${precent}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
   `;
@@ -139,7 +139,7 @@ function createCards(num) {
         let html = `<div value="${data.stats[0].base_stat}" class="card col-md-2" >
                 <img class="card-img-top" src="${image}" alt="Card image cap">
                 <div class="card-body p-0 text-center">
-                  <h4 class=" mx-0">${data.name}</h4>
+                  <h6 class=" mx-0">${data.name}</h6>
                   <p class="card-text m-0">Health: <span class="health">${data.stats[0].base_stat}</span></p>
                   <p class="card-text m-0">Attack: <span class="attack">10</span></p>
 
