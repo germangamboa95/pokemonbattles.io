@@ -6,6 +6,7 @@ $(document).ready(function() {
 
 
   $('.main-selection').on('click', '.card', function() {
+    $('.main-selection').hide();
     userSelection.card = this;
     $(userSelection.card).attr("data", 'user');
     userSelection.health = this.attributes.value.value;
@@ -50,10 +51,9 @@ $(document).ready(function() {
     $('[data="enemy"] .card-text .attack').text(currentEnemy.base_power);
     $('[data="user"] .card-text .attack').text(userSelection.curent_power);
     //Needs to be an if
-    if (userSelection.health < 0) {
+    if (userSelection.health <= 0) {
       $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"    > <h1 class="bg-danger text-white p-1 px-2">YOU LOSE!</h1> </div>`);
-    }
-    if (currentEnemy.health < 0) {
+    }else if (currentEnemy.health <= 0) {
       $('.dead').append(currentEnemy.card);
       $('.btn, .title').hide();
       $('.opponent-selection').append($('.waiting-room .card'));
@@ -61,7 +61,7 @@ $(document).ready(function() {
       let remaining = $('.dead .card').length;
       $('.stats').hide();
       if (remaining == 3) {
-        $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"> <h1 class="bg-success text-white p-1 px-2">You WIN!</h1> </div>`);
+        $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"> <h1 class="bg-success text-white p-1 px-2">YOU WIN!</h1> </div>`);
       }
     }
 
@@ -73,6 +73,7 @@ $(document).ready(function() {
 
 
 });
+
 
 
 
@@ -152,8 +153,8 @@ function createCards(num) {
         $('.main-selection').append(html);
         loader(loadCount);
         if(loadCount === 4) {
-          $('.main-selection').show();
-          $('.main-selection').before('<h2 class="title">Choose your Pokemon!</h2>');
+          $('.main-selection').show('slow');
+          $('.main-selection').before('<h2 class="title text-center">Choose your Pokemon!</h2>');
         }
       });
   }
