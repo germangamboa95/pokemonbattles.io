@@ -49,8 +49,8 @@ $(document).ready(function() {
     $('[data="user"] .card-text .attack').text(userSelection.curent_power);
 //Needs to be an if
     if (userSelection.health < 0) {
-      $('body').html('<h1>YOU LOST <br> GAME OVER!</h1>');
-    }
+        $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"    > <h1 class="bg-danger text-white p-1 px-2">YOU LOSE!</h1> </div>`);
+    }   
     if (currentEnemy.health < 0) {
       $('.dead').append(currentEnemy.card);
       $('.btn, .title').hide();
@@ -59,7 +59,7 @@ $(document).ready(function() {
       let remaining = $('.dead .card').length;
       $('.stats').hide();
       if(remaining == 3) {
-        $('body').html('<h1>You Win!</h1>');
+        $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"> <h1 class="bg-success text-white p-1 px-2">You WIN!</h1> </div>`);
       }
     }
 
