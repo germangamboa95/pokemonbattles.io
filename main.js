@@ -1,6 +1,8 @@
+let loadCount = 0;
+
 $(document).ready(function() {
-  $('.main-selection').before('<h2 class="title">Choose your Pokemon!</h2>');
   createCards(4);
+  $('.main-selection').hide();
 
 
   $('.main-selection').on('click', '.card', function() {
@@ -32,7 +34,7 @@ $(document).ready(function() {
     $('.waiting-room').append(opponents).addClass('justify-content-end');
 
     $('.battle-spot').append('<button class="btn btn-danger">ATTACK!</button>');
-      $('.battle-spot').append('<div class=" col-md-3 stats">');
+    $('.battle-spot').append('<div class=" col-md-3 stats">');
   });
 
   $('.battle-spot').on('click', '.btn', function() {
@@ -47,10 +49,10 @@ $(document).ready(function() {
     $('[data="user"] .card-text .health').text(userSelection.health);
     $('[data="enemy"] .card-text .attack').text(currentEnemy.base_power);
     $('[data="user"] .card-text .attack').text(userSelection.curent_power);
-//Needs to be an if
+    //Needs to be an if
     if (userSelection.health < 0) {
-        $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"    > <h1 class="bg-danger text-white p-1 px-2">YOU LOSE!</h1> </div>`);
-    }   
+      $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"    > <h1 class="bg-danger text-white p-1 px-2">YOU LOSE!</h1> </div>`);
+    }
     if (currentEnemy.health < 0) {
       $('.dead').append(currentEnemy.card);
       $('.btn, .title').hide();
@@ -58,7 +60,7 @@ $(document).ready(function() {
       $('.chosen , .choose-opp').show();
       let remaining = $('.dead .card').length;
       $('.stats').hide();
-      if(remaining == 3) {
+      if (remaining == 3) {
         $('body').html(`<div class="d-flex  justify-content-center flex-column align-items-center h-100"> <h1 class="bg-success text-white p-1 px-2">You WIN!</h1> </div>`);
       }
     }
@@ -102,7 +104,7 @@ function attack() {
 
 
   let html =
-  `
+    `
     <ul class="list-group">
       <li class="list-group-item">You took ${userSelection.curent_power} points from the enemy!</li>
       <li class="list-group-item">The enemy took ${currentEnemy.base_power}</li>
@@ -112,10 +114,24 @@ function attack() {
 
 }
 
+
+function loader(prog) {
+  let precent = (prog/4) * 100;
+  let html =`
+  <div class="progress" style="width: 100%">
+<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: ${precent}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+  `;
+  $('.loader').html(html);
+  if(precent == 100) {
+    $('.loader').hide();
+  }
+}
+
 function createCards(num) {
 
   for (let i = 0; i < num; i++) {
-    let id = Math.floor(Math.random() * 120) + 1;
+    let id = Math.floor(Math.random() * 420) + 1;
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
@@ -130,8 +146,15 @@ function createCards(num) {
                 </div>
               </div>`;
         html = $(html);
+        loadCount++;
+        console.log(loadCount);
 
         $('.main-selection').append(html);
+        loader(loadCount);
+        if(loadCount === 4) {
+          $('.main-selection').show();
+          $('.main-selection').before('<h2 class="title">Choose your Pokemon!</h2>');
+        }
       });
   }
 }
